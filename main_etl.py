@@ -5,7 +5,7 @@ from tasks.transform import transformar_datos
 from tasks.load import cargar_en_json
 
 @flow
-def flujo_transporte(url):
+def flujo_transporte(url: str):
     logger = get_run_logger()
     logger.info("🌱 Iniciando el flujo ETL de posiciones...")
     raw = extraer_datos()

@@ -6,6 +6,7 @@ import os
 
 @task
 def cargar_en_json(lista_datos: list[dict], path: str = "./raw"):
-    with open(path, "w", encoding="utf-8") as f:
+    filename = datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + ".json"
+    with open(f'{path}\\{filename}', "w", encoding="utf-8") as f:
         json.dump(lista_datos, f, indent=4, default=str)
     return "archivo guardado"

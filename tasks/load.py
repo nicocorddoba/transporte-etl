@@ -1,7 +1,7 @@
 from prefect import task
 import json
 import sqlite3
-import datetime
+from datetime import datetime
 import os
 
 @task

@@ -5,5 +5,5 @@ import sqlite3
 
 @task
 def cargar_en_json(lista_datos: list[dict], path: str = "./raw"):
-    json.dump(lista_datos, open(path, "w"), indent=4)
+    json.dump(lista_datos, indent=4, sort_keys=True, default=str)
     return "archivo guardado"

@@ -17,7 +17,7 @@ def flujo_transporte(url: str, path: str):
 
 
 @flow
-def load(path: str):
+def flujo_carga(path: str):
     logger = get_run_logger()
     logger.info("🌱 Iniciando carga de datos")
     cargar(path)

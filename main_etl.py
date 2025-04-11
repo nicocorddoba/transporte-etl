@@ -10,7 +10,7 @@ def flujo_transporte(url: str, path: str):
     logger.info("🌱 Iniciando el flujo ETL de posiciones...")
     raw = extraer_datos(url)
     logger.info("Extracted data", raw)
-    limpio = transformar_datos(raw)
+    limpio = transformar_datos(raw, path)
     logger.info("data stored")
     # cej = cargar_en_json(limpio, path)
     # logger.info(cej)

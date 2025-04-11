@@ -1,12 +1,18 @@
 from prefect import task
 import json
-import sqlite3
-from datetime import datetime
 import os
 
 @task
-def cargar_en_json(lista_datos: list[dict], path: str = "./raw"):
-    filename = datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + ".json"
-    with open(f'{path}\\{filename}', "w", encoding="utf-8") as f:
-        json.dump(lista_datos, f, indent=4, default=str)
-    return "archivo guardado"
+def cargar(path: str = "./raw"):
+    check = os.scandir(path)
+    file_list = [i.name for i in check]
+    try:
+        stored_data = []
+        for i in file_list:
+            file_path = f'{path}\\{i}'
+            data = json.load(open(file_path, 'r'))
+            stored_data.extend(data)
+            os.remove(file_path)
+        json.dump(stored_data, open('./ola.json', 'w'), indent=4, default=str)
+    except Exception as e:
+        print(f"Error: {e}")

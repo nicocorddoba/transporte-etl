@@ -11,7 +11,7 @@ def cargar(path: str = "./raw"):
         for i in file_list:
             file_path = f'{path}\\{i}'
             data = json.load(open(file_path, 'r'))
-            stored_data.extend(data)
+            stored_data.append(data)
             os.remove(file_path)
         json.dump(stored_data, open(f'{path}/ola.json', 'w'), indent=4, default=str)
     except Exception as e:

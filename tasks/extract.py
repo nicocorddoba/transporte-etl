@@ -8,7 +8,7 @@ def extraer_datos(url: str):
         response.raise_for_status()
         data = response.json()
         if data['error'] == 0 and len(data['posiciones']) > 0:
-            return data['posiciones']
+            return data
         elif len(data['posiciones']) == 0:
             return None
         else:

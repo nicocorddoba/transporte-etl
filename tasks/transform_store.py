@@ -6,14 +6,16 @@ import json
 
 @task
 def transformar_datos(data, path: str = "./raw"):
+    data = data['posiciones']
     argentina_time = datetime.now(ZoneInfo("America/Argentina/Buenos_Aires"))
     line_dict = {}
     # data_list =[]
     line_dict["time"] = argentina_time
     line_dict["Linea 1"] = []
-    transformed_data = {}
     
     for item in data:
+        transformed_data = {}
+        
         transformed_data['idInterno'] = (item['interno'])
         transformed_data['latitud'] = (item['latitud'])
         transformed_data['longitud'] = (item['longitud'])

@@ -13,6 +13,6 @@ def cargar(path: str = "./raw"):
             data = json.load(open(file_path, 'r'))
             stored_data.extend(data)
             os.remove(file_path)
-        json.dump(stored_data, open('./ola.json', 'w'), indent=4, default=str)
+        json.dump(stored_data, open(f'{path}/ola.json', 'w'), indent=4, default=str)
     except Exception as e:
         print(f"Error: {e}")

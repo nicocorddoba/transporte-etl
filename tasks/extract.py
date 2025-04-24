@@ -16,8 +16,8 @@ def extraer_datos(url:str, lines_dict: dict):
                 new_d[key] = None
             else:
                 print('error en la respuesta:', data['error'])
-                return data['error']
+                new_d[key] = None
         except requests.RequestException as e:
             print(f"Error al hacer la solicitud: {e}")
-            return None
+            new_d[key] = f"Error al hacer la solicitud:{e}"
     return new_d

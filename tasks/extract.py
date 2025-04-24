@@ -13,7 +13,7 @@ def extraer_datos(url:str, lines_dict: dict):
             if data['error'] == 0 and len(data['posiciones']) > 0:
                 new_d[key] = data['posiciones']
             elif len(data['posiciones']) == 0:
-                return None
+                new_d[key] = None
             else:
                 print('error en la respuesta:', data['error'])
                 return data['error']

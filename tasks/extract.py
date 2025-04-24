@@ -3,8 +3,8 @@ import requests
 
 @task
 def extraer_datos(url:str, lines_dict: dict):
+    new_d = {}
     for key, values in lines_dict.items():
-        new_d = {}
         nurl = f"{url}/{values}"
         try:
             response = requests.get(nurl, timeout=10)

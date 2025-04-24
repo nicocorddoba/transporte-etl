@@ -16,7 +16,7 @@ def transformar_datos(data, path: str = "./raw"):
         filename = datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + ".json"
         try:
             with open(f'{path}\\{filename}', "w", encoding="utf-8") as f:
-                json.dump(data, f, indent=4, default=str)
+                json.dump(data, f, indent=4, default=str, ensure_ascii=False)
             return "archivo guardado"
         except Exception as e:
             return f"Error al guardar el archivo: {e}"

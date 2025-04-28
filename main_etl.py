@@ -23,4 +23,5 @@ def flujo_transporte(url: str, path: str, lines_dict: dict):
 def flujo_carga(path: str):
     logger = get_run_logger()
     logger.info("🌱 Iniciando carga de datos")
-    cargar(path)
+    is_error=cargar(path)
+    logger.info(is_error)

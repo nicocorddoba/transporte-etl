@@ -5,7 +5,7 @@ import os
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
-today = datetime.today(ZoneInfo("America/Argentina/Buenos_Aires")).strftime("%Y-%m-%d")
+today = datetime.now(ZoneInfo("America/Argentina/Buenos_Aires")).strftime("%Y-%m-%d")
 
 @task
 def cargar(path: str = "./raw"):

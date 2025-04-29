@@ -23,7 +23,7 @@ def cargar(path: str = "./raw"):
     try: 
         json.dump(stored_data, open(f'{path}\\{today}.json', 'w'), indent=4, default=str)
         s3 = S3Bucket.load("s3block")
-        s3.upload_from_path(path=f'{path}\\{today}.json', to_path=f'raw/{today}.json')
+        s3.upload_from_path(from_path=f'{path}\\{today}.json', to_path=f'raw/{today}.json')
     except Exception as e:
         return f"Error al guardar el archvio: {e}"
 

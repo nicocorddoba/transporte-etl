@@ -11,7 +11,6 @@ def transformar_datos(data, path: str = "./raw"):
     else:
         # data = data['posiciones']
         argentina_time = datetime.now(ZoneInfo("America/Argentina/Buenos_Aires"))
-        data['time'] = argentina_time.strftime("%Y-%m-%d %H:%M")
         # Store data in {path}
         filename = datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + ".json"
         try:

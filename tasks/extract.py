@@ -1,23 +1,21 @@
 from prefect import task
 import requests
 
+
+class NoDataError(Exception):
+    """Error personalizado para cuando no se extraen datos."""
+    pass
+
+
 @task
-def extraer_datos(url:str, lines_dict: dict):
-    new_d = {}
-    for key, values in lines_dict.items():
-        nurl = f"{url}/{values}"
-        try:
-            response = requests.get(nurl, timeout=10)
-            response.raise_for_status()
-            data = response.json()
-            if data['error'] == 0 and len(data['posiciones']) > 0:
-                new_d[key] = data['posiciones']
-            elif len(data['posiciones']) == 0:
-                new_d[key] = None
-            else:
-                print('error en la respuesta:', data['error'])
-                new_d[key] = None
-        except requests.RequestException as e:
-            print(f"Error al hacer la solicitud: {e}")
-            new_d[key] = f"Error al hacer la solicitud:{e}"
-    return new_d
+def extraer_datos(url:str):
+    try:
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        data = response.json()
+        if len(data) > 0:
+            return data
+        elif len(data) == 0:
+            raise NoDataError("No se encontraron datos en la respuesta.")
+    except requests.RequestException as e:
+        raise requests.RequestException(f"Error al realizar la solicitud: {e}")

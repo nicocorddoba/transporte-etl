@@ -25,11 +25,17 @@ def cargar(path: str = "./raw"):
         s3 = S3Bucket.load("s3block")
         s3.upload_from_path(from_path=f'{path}\\{today}.json', to_path=f'raw/{today}.json')
     except Exception as e:
-        return f"Error al guardar el archvio: {e}"
+        os.remove(f'{path}\\{today}.json')
+        raise e
 
     for i in file_list:
         file_path = f'{path}\\{i}'
         try:
             os.remove(file_path)
         except Exception as e:
-            return f"Error al remover el archivo {file_path}: {e}"
+            raise e
+    try:
+        os.remove(f'{path}\\{today}.json')
+        return "Carga exitosa"
+    except Exception as e:
+        raise e
